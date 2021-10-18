@@ -9,13 +9,13 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /salaries-system
 
 # copy csproj and restore as distinct layers
-#COPY *.sln .
+COPY *.sln .
 COPY *.csproj ./
 RUN dotnet restore
 
 # copy everything else and build app
 COPY . ./
-#WORKDIR /salaries-system/
+WORKDIR /salaries-system/
 RUN dotnet publish -c release -o /salaries-system --no-restore
 
 # final stage/image
@@ -24,4 +24,4 @@ WORKDIR /salaries-system
 COPY --from=build-env/salaries-system ./salaries-system /salaries-system/
 ENTRYPOINT ["dotnet", "cicd-1-salaries.dll"]
 
-#lstat /home/runner/work/salaries-system/salaries-system/Dockerfile: no such #file or directory
+#lstat /home/runner/work/salaries-system/salaries-system/Dockerfile: no such #file or directory ===> Solved by renameing the file
