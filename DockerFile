@@ -1,3 +1,9 @@
+#Use commands from Rickard to install docker on VM.
+FROM ubuntu:20.04
+
+RUN apt-get -y update
+
+RUN apt-get -y install nginx
 # https://hub.docker.com/_/microsoft-dotnet
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /salaries-system
