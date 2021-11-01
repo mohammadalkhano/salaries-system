@@ -10,7 +10,7 @@ WORKDIR /salaries-system
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY *.csproj ./
+COPY *.csproj .
 RUN dotnet restore
 
 # copy everything else and build app
