@@ -11,11 +11,13 @@ WORKDIR /salaries-system
 # copy csproj and restore as distinct layers
 COPY *.sln .
 COPY *.csproj .
+COPY . ./
+WORKDIR /salaries-system/
 RUN dotnet restore
 
 # copy everything else and build app
-COPY . ./
-WORKDIR /salaries-system/
+
+
 RUN dotnet publish -c release -o /salaries-system --no-restore
 
 # final stage/image
