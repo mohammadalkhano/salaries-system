@@ -24,7 +24,7 @@ RUN dotnet publish -c release -o /salaries-system --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /salaries-system
 
-COPY --from=build-env /salaries-system/out .
+COPY --from=build-env /salaries-system/bin .
 
 ENTRYPOINT ["dotnet", "cicd-1-salaries.dll"]
 
