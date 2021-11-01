@@ -23,7 +23,9 @@ RUN dotnet publish -c release -o /salaries-system --no-restore
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /salaries-system
-COPY --from=build-env/salaries-system ./salaries-system /salaries-system/
+
+COPY --from=build-env /salaries-system/out .
+
 ENTRYPOINT ["dotnet", "cicd-1-salaries.dll"]
 
 #lstat /home/runner/work/salaries-system/salaries-system/Dockerfile: no such #file or directory ===> Solved by renameing the file
